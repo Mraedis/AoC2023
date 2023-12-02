@@ -1,6 +1,6 @@
 games_list = File.read(File.join(File.dirname(__FILE__),  "../Inputs/Input02.txt"))
 
-possible = [0,0,0,12,14,13]
+possible = {"red" => 12, "green" => 13, "blue" => 14}
 sum = 0
 for game in games_list.split("\n")
     id, hands = game.split(": ")
@@ -10,7 +10,7 @@ for game in games_list.split("\n")
         dice = hand.split(", ")
         for die in dice
             num, color = die.split(" ")
-            if possible[color.length] < num.to_i
+            if possible[color] < num.to_i
                 fits = false
             end
         end

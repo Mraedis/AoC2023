@@ -4,18 +4,18 @@ pow = 0
 for game in games_list.split("\n")
     id, hands = game.split(": ")
     id = id.split(" ")[1].to_i
-    max = [0,0,0,0,0,0]
+    max = {"red" => 0, "green" => 0, "blue" => 0}
     fits = true
     for hand in hands.split("; ")
         dice = hand.split(", ")
         for die in dice
             num, color = die.split(" ")
-            if max[color.length] < num.to_i
-              max[color.length] = num.to_i
+            if max[color] < num.to_i
+              max[color] = num.to_i
             end
         end
     end
-    pow += max[3]*max[4]*max[5]
+    pow += max["red"]*max["blue"]*max["green"]
 end
 
 puts pow
